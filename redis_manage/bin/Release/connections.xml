@@ -1,5 +1,0 @@
-﻿<?xml version="1.0"?>
-<connections>
-<connection host="127.0.0.1" name="local-6379" auth="" port="6379"/>
-<connection host="127.0.0.1" name="local-6380" auth="" port="6380"/>
-</connections>
