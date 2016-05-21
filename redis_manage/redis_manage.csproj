@@ -40,11 +40,19 @@
   <PropertyGroup />
   <PropertyGroup />
   <ItemGroup>
+    <Reference Include="Hibernate.Util, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Release\Hibernate.Util.dll</HintPath>
+    </Reference>
     <Reference Include="ServiceStack.Common">
       <HintPath>..\dll\ServiceStack.Common.dll</HintPath>
     </Reference>
     <Reference Include="ServiceStack.Interfaces">
       <HintPath>..\dll\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Redis, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Release\ServiceStack.Redis.dll</HintPath>
     </Reference>
     <Reference Include="ServiceStack.Text">
       <HintPath>..\dll\ServiceStack.Text.dll</HintPath>
@@ -293,16 +301,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Hibernate.Util\Hibernate.Util.csproj">
-      <Project>{11955342-12E9-481D-BF2D-712C9DE92127}</Project>
-      <Name>Hibernate.Util</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ServiceStack.Redis\ServiceStack.Redis.csproj">
-      <Project>{E557C5BB-6ECF-4706-8ECB-CB5B566C5957}</Project>
-      <Name>ServiceStack.Redis</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Release\redis_manage.exe" />
