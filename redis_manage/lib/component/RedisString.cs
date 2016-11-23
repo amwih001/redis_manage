@@ -29,7 +29,7 @@ namespace redis_manage.lib.component
 
         public string GetValue(string key)
         {
-            return base.Get(key);
+            return base.GetString(key);
         }
     }
 }

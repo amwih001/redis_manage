@@ -75,7 +75,8 @@ namespace redis_manage.lib
                 {
                     if (item != null && item.ServerName == servername)
                     {
-                        _exists = true; break;
+                        _exists = true;
+                        break;
                     }
                 }
             }

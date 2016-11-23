@@ -6,9 +6,13 @@ using System.Windows.Forms;
 using redis_manage.info;
 using redis_manage.lib;
 using redis_manage.tools;
+using System.IO;
 
 namespace redis_manage.controls
 {
+    /// <summary>
+    /// 自定义TreeView控件
+    /// </summary>
     public class XTreeView : TreeView, IControl
     {
 
@@ -217,7 +221,6 @@ namespace redis_manage.controls
                 lastdbInServerName = xtParent.Server.ServerName;
                 //重置上次key包名
                 this.lastfolder = null;
-
             }
         }
 
@@ -229,7 +232,21 @@ namespace redis_manage.controls
         {
             
             Redis redis = new Redis(node.Server);
-            int dbcount = redis.DataBases();
+            int dbcount = -1;
+            try
+            {
+                //throw new FileLoadException("Could not load file or assembly 'System.Core, Version=2.0.5.0, Culture=neutral, PublicKeyT");
+                dbcount = redis.DataBases();
+            }
+            catch (Exception ex)
+            {
+                if (ex is FileLoadException && ex.Message.Contains("System.Core"))
+                {
+                    module.frmWinPatch patch = new module.frmWinPatch();
+                    patch.ShowDialog();
+                    return;
+                }
+            }
             if (dbcount == -1)
             {
                 //try again

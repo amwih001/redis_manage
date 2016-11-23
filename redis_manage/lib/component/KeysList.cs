@@ -97,15 +97,15 @@ namespace redis_manage.lib.component
 
         public List<string> Get()
         {
-            return this.Get(null);
+            return this.Get(null, SearchKeyType.Contains);
         }
 
-        public List<string> Get(string pattern)
+        public List<string> Get(string pattern, SearchKeyType skt)
         {
-            return SplitListKey(pattern);
+            return SplitListKey(pattern, skt);
         }
 
-        private List<string> SplitListKey(string pattern)
+        private List<string> SplitListKey(string pattern , SearchKeyType skt)
         {
             List<string> tmp = null;
             if (this.list == null)
@@ -118,18 +118,32 @@ namespace redis_manage.lib.component
                 this.ParseKeyFolder();
             }
 
-            if (pattern == null)
+            if (string.IsNullOrEmpty(pattern))
             {
                 tmp = this.list;
             }
             else
             {
-                tmp = this.list.FindAll((string item) => { return item.StartsWith(pattern); });
+                tmp = this.list.FindAll((string item) =>
+                {
+                    if (skt == SearchKeyType.StartsWith)
+                    {
+                        return item.StartsWith(pattern);
+                    }
+                    else if (skt == SearchKeyType.EndsWith)
+                    {
+                        return item.EndsWith(pattern);
+                    }
+                    else
+                    {
+                        return item.Contains(pattern);
+                    }                    
+                });
             }
             this.Total = tmp.Count;
 
             List<string> result = new List<string>();
-            if (tmp != null)
+            if (tmp != null && tmp.Count > 0)
             {
                 int index = (this.PageIndex - 1) * this.PageSize;
                 int count = this.PageSize;
@@ -143,11 +157,21 @@ namespace redis_manage.lib.component
                 {
                     count = Math.Max(0, lcount);
                 }
-                result = tmp.GetRange(index, count);
+                try
+                {
+                    result = tmp.GetRange(index, count);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
             return result;
         }
 
+        /// <summary>
+        /// 分析key包
+        /// </summary>
         private void ParseKeyFolder()
         {
             if (this.list != null)

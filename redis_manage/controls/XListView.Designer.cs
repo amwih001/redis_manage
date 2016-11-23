@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("aaaaaa");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("aaaaaa");
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("aaaaaa");
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("aaaaaa");
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("aaaaaa");
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("aaaaaa");
-            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("aaaaaa");
-            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("aaaaaa");
+            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("aaaaaa");
+            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem("aaaaaa");
+            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem("aaaaaa");
+            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem("aaaaaa");
+            System.Windows.Forms.ListViewItem listViewItem13 = new System.Windows.Forms.ListViewItem("aaaaaa");
+            System.Windows.Forms.ListViewItem listViewItem14 = new System.Windows.Forms.ListViewItem("aaaaaa");
+            System.Windows.Forms.ListViewItem listViewItem15 = new System.Windows.Forms.ListViewItem("aaaaaa");
+            System.Windows.Forms.ListViewItem listViewItem16 = new System.Windows.Forms.ListViewItem("aaaaaa");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XListView));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -49,20 +49,25 @@
             this.cmsRefreshKeys = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsRenameKey = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsDeleteKey = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.txtSearchKey = new System.Windows.Forms.TextBox();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.cmsListView.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.panel4);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 295);
+            this.panel1.Location = new System.Drawing.Point(0, 442);
             this.panel1.Name = "panel1";
             this.panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.panel1.Size = new System.Drawing.Size(559, 39);
+            this.panel1.Size = new System.Drawing.Size(823, 39);
             this.panel1.TabIndex = 0;
             // 
             // panel3
@@ -71,7 +76,7 @@
             this.panel3.Controls.Add(this.btnPrevPage);
             this.panel3.Controls.Add(this.btnNextPage);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(209, 0);
+            this.panel3.Location = new System.Drawing.Point(473, 0);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(350, 39);
             this.panel3.TabIndex = 0;
@@ -113,7 +118,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(559, 295);
+            this.panel2.Size = new System.Drawing.Size(823, 442);
             this.panel2.TabIndex = 1;
             // 
             // lvKeyList
@@ -122,18 +127,18 @@
             this.lvKeyList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lvKeyList.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lvKeyList.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3,
-            listViewItem4,
-            listViewItem5,
-            listViewItem6,
-            listViewItem7,
-            listViewItem8});
+            listViewItem9,
+            listViewItem10,
+            listViewItem11,
+            listViewItem12,
+            listViewItem13,
+            listViewItem14,
+            listViewItem15,
+            listViewItem16});
             this.lvKeyList.Location = new System.Drawing.Point(0, 0);
             this.lvKeyList.MultiSelect = false;
             this.lvKeyList.Name = "lvKeyList";
-            this.lvKeyList.Size = new System.Drawing.Size(559, 295);
+            this.lvKeyList.Size = new System.Drawing.Size(823, 442);
             this.lvKeyList.TabIndex = 0;
             this.lvKeyList.TileSize = new System.Drawing.Size(220, 30);
             this.lvKeyList.UseCompatibleStateImageBehavior = false;
@@ -174,6 +179,33 @@
             this.cmsDeleteKey.Text = "删除";
             this.cmsDeleteKey.Click += new System.EventHandler(this.cmsDeleteKey_Click);
             // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.btnSearch);
+            this.panel4.Controls.Add(this.txtSearchKey);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(473, 39);
+            this.panel4.TabIndex = 1;
+            // 
+            // txtSearchKey
+            // 
+            this.txtSearchKey.Location = new System.Drawing.Point(11, 7);
+            this.txtSearchKey.Name = "txtSearchKey";
+            this.txtSearchKey.Size = new System.Drawing.Size(151, 21);
+            this.txtSearchKey.TabIndex = 0;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(171, 6);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(77, 23);
+            this.btnSearch.TabIndex = 1;
+            this.btnSearch.Text = "搜索键值";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
             // XListView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -181,12 +213,14 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "XListView";
-            this.Size = new System.Drawing.Size(559, 334);
+            this.Size = new System.Drawing.Size(823, 481);
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.cmsListView.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -204,6 +238,9 @@
         private System.Windows.Forms.Label lblPageInfo;
         private System.Windows.Forms.ToolStripMenuItem cmsDeleteKey;
         private System.Windows.Forms.ToolStripMenuItem cmsRenameKey;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.TextBox txtSearchKey;
+        private System.Windows.Forms.Button btnSearch;
 
 
 

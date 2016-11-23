@@ -24,7 +24,8 @@ namespace redis_manage.module
             this.ShowInTaskbar = false;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.StartPosition = FormStartPosition.CenterScreen;
-            //this.KeyPress += new KeyPressEventHandler(ModuleBase_KeyPress);
+
+            //this.KeyDown += new KeyEventHandler(ModuleBase_KeyDown);
         }
 
         protected void CloseSelf()

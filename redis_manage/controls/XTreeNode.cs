@@ -9,6 +9,9 @@ using redis_manage.tools;
 
 namespace redis_manage.controls
 {
+    /// <summary>
+    /// 自定义TreeNode扩展类
+    /// </summary>
     public class XTreeNode : TreeNode
     {
         private TreeNodeType _nodeType;

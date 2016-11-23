@@ -72,11 +72,31 @@ namespace redis_manage.info
         List = 4,
         Set = 5
     }
-
+    /// <summary>
+    /// 类型面板操作类型
+    /// </summary>
     public enum Opera
     { 
         Save = 1,
         Reload = 2,
         Remove = 3
+    }
+    /// <summary>
+    /// 搜索键值类型
+    /// </summary>
+    public enum SearchKeyType
+    { 
+        /// <summary>
+        /// 包含,默认
+        /// </summary>
+        Contains = 1,
+        /// <summary>
+        /// 开头包含
+        /// </summary>
+        StartsWith = 2,
+        /// <summary>
+        /// 结尾包含
+        /// </summary>
+        EndsWith = 3
     }
 }

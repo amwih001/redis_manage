@@ -15,6 +15,9 @@ using redis_manage.module;
 
 namespace redis_manage.controls
 {
+    /// <summary>
+    /// 自定义ListView控件(显示Redis Key列表)
+    /// </summary>
     public partial class XListView : UserControl , IControl
     {
         private KeysList keyslist;
@@ -64,7 +67,7 @@ namespace redis_manage.controls
         public void OnRefresh()
         {
             this.RefreshKeys();
-            List<string> list = this.keyslist.Get();
+            List<string> list = this.keyslist.Get(this.SearchKey, SearchKeyType.Contains);
             this.RefreshListView(list);
 
             XTreeNode dbnode = node == null ? null : node.FindDataBaseNode();
@@ -72,10 +75,16 @@ namespace redis_manage.controls
             {
                 dbnode.RefreshText();
                 dbnode.RefreshFolder(this.Keyslist.KeyFolder, true);
-                dbnode.ExpandAll();
+                //2016-11-22 16:11:26 取消展开所有子节点
+                //dbnode.ExpandAll();
             }
         }
 
+        /// <summary>
+        /// key包点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="databaseid"></param>
         public void OnKeyFolderChange(XTreeNode sender, int databaseid)
         {
             FolderInfo folder = sender.Tag as FolderInfo;
@@ -90,7 +99,7 @@ namespace redis_manage.controls
             this.CheckChangeDataBase(databaseid, this.keyslist.Server.ServerName != sender.Server.ServerName);
             keyslist.Server = sender.Server;
             keyslist.DB = databaseid;
-            List<string> list = this.keyslist.Get(pattern);
+            List<string> list = this.keyslist.Get(pattern, SearchKeyType.StartsWith);
             this.RefreshListView(list);
         }
         /// <summary>
@@ -101,11 +110,14 @@ namespace redis_manage.controls
         /// <param name="pattern"></param>
         public void OnDataBaseChange(XTreeNode sender, int databaseid, string pattern)
         {
+            //当切换数据库时,清空搜索框文本
+            this.txtSearchKey.Clear();
+
             this.node = sender;
             this.CheckChangeDataBase(databaseid , this.keyslist.Server.ServerName != sender.Server.ServerName);
             keyslist.Server = sender.Server;
             keyslist.DB = databaseid;
-            List<string> list = this.keyslist.Get(pattern);
+            List<string> list = this.keyslist.Get(pattern, SearchKeyType.Contains);
             this.RefreshListView(list);
         }
 
@@ -139,6 +151,7 @@ namespace redis_manage.controls
                 keyinfo = new KeyInfo(item);
                 lvi = new ListViewItem(keyinfo.NotNull);
                 lvi.Tag = keyinfo;
+                lvi.ToolTipText = item;
                 this.lvKeyList.Items.Add(lvi);
             }
         }
@@ -172,14 +185,14 @@ namespace redis_manage.controls
         private void btnNextPage_Click(object sender, EventArgs e)
         {
             this.keyslist.PageIndex++;
-            List<string> list = this.keyslist.Get();
+            List<string> list = this.keyslist.Get(this.SearchKey , SearchKeyType.Contains);
             this.RefreshListView(list);
         }
 
         private void btnPrevPage_Click(object sender, EventArgs e)
         {
             this.keyslist.PageIndex--;
-            List<string> list = this.keyslist.Get();
+            List<string> list = this.keyslist.Get(this.SearchKey, SearchKeyType.Contains);
             this.RefreshListView(list);
         }
 
@@ -306,6 +319,23 @@ namespace redis_manage.controls
                 this.keyslist.ResetAll();
                 this.RefreshListView(new List<string>());
             }
+        }
+        
+        /// <summary>
+        /// 获取搜索的关键字
+        /// </summary>
+        public string SearchKey { set; get; }
+
+        /// <summary>
+        /// 搜索键值按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            //2016-11-22 16:11:44 添加搜索key关键字功能
+            this.SearchKey = this.txtSearchKey.Text.Trim();
+            this.OnRefresh();
         }
     }
 }

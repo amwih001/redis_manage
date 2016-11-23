@@ -26,6 +26,8 @@ namespace redis_manage
 
         private void frmRedisClient_Load(object sender, EventArgs e)
         {
+            this.Text = string.Format("{0}-v{1}", this.Text, Define.Vs.ToString());
+
             this.InitControls();
             this.InitEvents();
             Cawd.Create().View();
@@ -378,6 +380,11 @@ namespace redis_manage
         {
             frmAbout about = new frmAbout();
             about.ShowDialog();
+        }
+
+        private void frmRedisClient_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

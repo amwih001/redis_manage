@@ -87,5 +87,13 @@ namespace redis_manage.tools
             }
             return false;
         }
+
+        public bool UploadException(string ex)
+        {
+            ex = ex.Replace("&", "").Replace("?", "");
+            string url = string.Format("{0}/app/redis?op=5&vs={1}&appid={2}&rnd={3}&svs={4}&os={5}&bit={6}&viewid={7}&exception={8}", Define.Host, Define.Vs, Define.AppID, Tools.GetRandNum(short.MaxValue), Define.RedisVS, SystemInfo.GetOsname, SystemInfo.GetSystemBit, Define.ViewID, ex);
+            string output = Collects.GetHtmlCode(url, Define.CharSet);
+            return true;
+        }
     }
 }

@@ -51,7 +51,7 @@ namespace redis_manage.tools
         {
             if (fileSize < 0)
             {
-                return "0B";
+                return "0 B";
             }
             else if (fileSize >= 1024 * 1024 * 1024)
             {

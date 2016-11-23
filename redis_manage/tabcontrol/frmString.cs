@@ -37,7 +37,7 @@ namespace redis_manage.tabcontrol
             this.kattr.ParentControl = this;
             this.kattr.OnLoad();
 
-            this.rtbValue.Text = base.redis.Get(base.Key.Text);
+            this.rtbValue.Text = base.redis.GetString(base.Key.Text);
             base.InitValue();
         }
 

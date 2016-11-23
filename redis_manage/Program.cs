@@ -4,6 +4,8 @@ using System.Windows.Forms;
 using Hibernate.Util;
 using redis_manage.info;
 using System.Text;
+using System.ComponentModel;
+using redis_manage.tools;
 
 namespace redis_manage
 {
@@ -28,9 +30,10 @@ namespace redis_manage
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            FSO.WriteFile(Define.LogPath, GetExceptionMsg(e.ExceptionObject as Exception, e.ToString()) , true);
+            //FSO.WriteFile(Define.LogPath, GetExceptionMsg(e.ExceptionObject as Exception, e.ToString()), true);
+            Upload(GetExceptionMsg(e.ExceptionObject as Exception, e.ToString()));
         }
 
         /// <summary>
@@ -38,9 +41,19 @@ namespace redis_manage
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
+        private static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
         {
-            FSO.WriteFile(Define.LogPath ,GetExceptionMsg(e.Exception , e.ToString()) , true);
+            //FSO.WriteFile(Define.LogPath, GetExceptionMsg(e.Exception, e.ToString()), true);
+            Upload(GetExceptionMsg(e.Exception, e.ToString()));
+        }
+
+        private static void Upload(string ex)
+        {
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += delegate(object sender, DoWorkEventArgs e) {
+                Cawd.Create().UploadException(ex);
+            };
+            worker.RunWorkerAsync();
         }
 
         /// <summary>
@@ -52,7 +65,7 @@ namespace redis_manage
         private static string GetExceptionMsg(Exception ex, string backStr)
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine("****************************异常文本****************************");
+            sb.AppendLine("*******异常文本*******");
             sb.AppendLine("【出现时间】：" + DateTime.Now.ToString());
             if (ex != null)
             {
@@ -64,8 +77,7 @@ namespace redis_manage
             {
                 sb.AppendLine("【未处理异常】：" + backStr);
             }
-            sb.AppendLine("***************************************************************");
-            MessageBox.Show(sb.ToString());
+            sb.AppendLine("*********************");
             return sb.ToString();
         }
     }

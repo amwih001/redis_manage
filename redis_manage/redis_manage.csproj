@@ -9,7 +9,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>redis_manage</RootNamespace>
-    <AssemblyName>redis_manage</AssemblyName>
+    <AssemblyName>Redis管理平台</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -36,9 +36,6 @@
   <PropertyGroup>
     <ApplicationIcon>redis.ico</ApplicationIcon>
   </PropertyGroup>
-  <PropertyGroup />
-  <PropertyGroup />
-  <PropertyGroup />
   <ItemGroup>
     <Reference Include="Hibernate.Util, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -180,6 +177,12 @@
     <Compile Include="module\frmServerAttr.Designer.cs">
       <DependentUpon>frmServerAttr.cs</DependentUpon>
     </Compile>
+    <Compile Include="module\frmWinPatch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="module\frmWinPatch.Designer.cs">
+      <DependentUpon>frmWinPatch.cs</DependentUpon>
+    </Compile>
     <Compile Include="module\ModuleBase.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -266,6 +269,9 @@
     <EmbeddedResource Include="module\frmServerAttr.resx">
       <DependentUpon>frmServerAttr.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="module\frmWinPatch.resx">
+      <DependentUpon>frmWinPatch.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -291,6 +297,8 @@
     <EmbeddedResource Include="tabcontrol\frmZset.resx">
       <DependentUpon>frmZset.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="bin\Debug\redis_manage.vshost.exe.config" />
+    <None Include="bin\Debug\redis_manage.vshost.exe.manifest" />
     <None Include="bin\Release\redis_manage.vshost.exe.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -303,6 +311,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Debug\redis_manage.exe" />
+    <Content Include="bin\Debug\redis_manage.pdb" />
+    <Content Include="bin\Debug\redis_manage.vshost.exe" />
+    <Content Include="bin\Debug\resource\redis.ico" />
+    <Content Include="bin\Debug\resource\redis.png" />
     <Content Include="bin\Release\redis_manage.exe" />
     <Content Include="bin\Release\redis_manage.pdb" />
     <Content Include="bin\Release\redis_manage.vshost.exe" />
